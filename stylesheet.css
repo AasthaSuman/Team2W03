@@ -7,15 +7,23 @@ div.header { background-image: url("images/12.png");
 	 }
 	 
 	  div.header p { 
-	 margin-left: 600px;
-	 font-size: 30px;
+	 font-size: 20px;
 	 font-family: Comic Sans MS;
 	 color: white;
 	 }
 	 
-	 pre{font: bold italic 14px arial;
-	 margin-left:600px;
-	 color: white;}
+	 div.header div {
+	 margin-left: 700px;
+	 font-family: Comic Sans MS;
+	 font-size:30px;
+	 color: white;
+	 padding:20px;
+	 }
+	 
+	div.header form {
+	display: table;
+	margin-left:700px;
+	 }
 	 
 	 body{
 	 background-color: rgb(191,223,255);
@@ -28,7 +36,7 @@ div.header { background-image: url("images/12.png");
 	 line-height: 40px;
 	 position: absolute;
 	 top: 150px;
-	 right: 100px;
+	 right: 200px;
 	 padding:20px 40px;
 	background-color: rgb(191,223,255);
 	background-image: none;
@@ -45,6 +53,11 @@ div.header { background-image: url("images/12.png");
 	div.table-row {
 	display: table-row;
 	}
+	
 	div.table-row p {
 	display: table-cell;
+	padding-right: 10px;
+	}
+	p.sp {
+	line-height: 13px;
 	}
