@@ -7,6 +7,36 @@
 
 <?php
 if (isset ($_POST['log_in'])) {
+$username = $_POST['username'];
+$password = $_POST['secret'];
+$login = false;
+$link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz')
+or die ('Error connecting to mysql sever');
+$query = "SELECT * FROM users_list WHERE username = '$username'";
+$result = mysqli_query($link, $query)
+or die ('Error connecting to database');
+$row = mysqli_fetch_array($result);
+mysqli_close($link);
+if ($row['password'] == $password) {
+$login = true;
+}
+
+if ($login == true) {
+?>
+<div class="header">
+<div> 
+<?php echo 'Welcome to eshopz, ' . $row['first_name'] . ' ' . $row['last_name']; ?>
+</div><p>
+<span class='option'><a href="header.php">HOME</a></span>
+<span class='option'>MY ACCOUNT</span>
+<span class='option'><a href="my_shop.php">MY SHOP</a></span>
+<span class='option'>Notification</span>
+</p>
+</div>
+
+<?php
+}
+else {
 ?>
 <div class= "header" >
 <div> 
@@ -14,7 +44,8 @@ if (isset ($_POST['log_in'])) {
 </div>
 </div>
 <?php  
-}
+} }
+
 else if (isset($_POST['sign_up']))
 {
 // Variables
@@ -54,7 +85,7 @@ $query = "INSERT INTO users_list (first_name, last_name, username, password, ema
  ?>
   <body>
 	 <div class="header"> 
-        <form action="<?php echo $_SERVER['PHP-SELF'];?>" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 				  <div class="table-row"> <p> Username: </p> <p> Password: </p> </div>
 				  <div class="table-row"> <p> <input type="text" name="username" value=""> </p> <p> <input type="password" name="secret" value=""> </p>
 				  <input type="submit" id="log_in" value="Log in"></div>
@@ -62,7 +93,7 @@ $query = "INSERT INTO users_list (first_name, last_name, username, password, ema
 				  </div>	
  <img src="images/9219.png" alt="eshop" width="500px" height="500px">
  <div class="form">
-	 		<form action="<?php echo $_SERVER['PHP-SELF'];?>" method="post">
+	 		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 			 <h2> SIGN UP </h2>
 			 <p> <font color= "red" size="4px"> Fields with * are mandatory </font></p>
 		    <div class="table-row"> <p>*First Name : </p><p> <input type="text" name="firstname" value=""> </p> </div>
