@@ -25,10 +25,10 @@ require_once('session.php');
 echo 'Welcome to eshopz, ' . $row['first_name'] . ' ' . $row['last_name']; ?>
 </div></div> <div class='option'> <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
 <span class='option'><a href="homepage.php">HOME</a></span>
-<span class='option'>MY ACCOUNT</span>
+<span class='option'><a>MY ACCOUNT</a></span>
 <span class='option'><a href="my_shop.php">MY SHOP</a></span>
-<span class='option'>Notification</span>
-<span class='option'><input type='submit' value='Log Out' name='log_out'></span>
+<span class='option'><a>NOTIFICATION</a></span>
+<span><input type='submit' value='Log Out' name='log_out'></span>
 </form></div>
 </body>
 </html>

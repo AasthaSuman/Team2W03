@@ -23,8 +23,10 @@ if ($login == true) {
 session_start();
 $_SESSION['user_id'] = $row['user_id'];
 $_SESSION['username'] = $row['username'];
+if (!empty($_POST['keep_logged'])) {
 setcookie('user_id', $row['user_id'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
 setcookie('username', $row['username'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
+} 
 header('Location: http://localhost/eshopz/homepage.php'); 
 } }
  
@@ -70,8 +72,9 @@ header('Location: http://localhost/eshopz/homepage.php');  }
  ?>
 <div class="header"> <form class='log_in' action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 <div class="table-row"> <p> Username: </p> <p> Password: </p> </div>
-<div class="table-row"> <p> <input type="text" name="username" 
-value="<?php if (isset ($_POST['log_in'])){echo $_POST['username'];} else echo ''; ?>"> </p>
+<div class="table-row"> <p class="sp"> <input type="text" name="username" 
+value="<?php if (isset ($_POST['log_in'])){echo $_POST['username'];} else echo ''; ?>">
+<br> <input type="checkbox" name="keep_logged"><font size="2px">Keep me logged in </font> </p>
 <p class="sp"> <input type="password" name="secret" value=""> <br> <font color="red" size="2px">
  <?php if (isset($login)) {if ($login == false) { echo 'Username or password is wrong!'; } } ?> </font></p>
 <input type="submit" name="log_in" value="Log in"></div> 
