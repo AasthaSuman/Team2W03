@@ -60,6 +60,9 @@ $query = "INSERT INTO users_list (date_time, first_name, last_name, username, pa
 "VALUES(NOW(), '$first_name', '$last_name', '$username', sha('$password'), '$email', '$gender')";
  mysqli_query ($link, $query) or die ('Error connecting database') ;
  mysqli_close($link);
+ session_start();
+$_SESSION['username'] = $username;
+header('Location: http://localhost/eshopz/sign_up.php');
  }  else {$form = true;} }
  
  /*_______________________ already logged in___________________ */
