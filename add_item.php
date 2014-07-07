@@ -18,7 +18,7 @@ else {$error = true;}} else {$form= true; $image_check = true;}}
 if ((empty($name)) || (empty($price)) || (empty($image))) {$form = true; $detail= true;}
 //item added successfully
 if ($form == false) { 
-$link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+/*Connect to mysql database*/require_once('connect_mysql.php');
 $query1 = "SELECT * FROM shops_list WHERE user_id = $user_id" or die ('Error connecting to database');
 $row = mysqli_fetch_array(mysqli_query($link, $query1));
 $seller_id = $row['seller_id'];

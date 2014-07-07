@@ -7,7 +7,7 @@
 session_start();
 if (isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
-$link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+/*Connect to mysql database*/require_once('connect_mysql.php');
 $query = "SELECT * FROM users_list WHERE username = '$username'";
 $result = mysqli_query($link, $query) or die ('Error connecting to database');
 $row = mysqli_fetch_array($result);

@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {  }
  }
  else {
  header('Location: http://localhost/eshopz/eshopz.php');  } 
- $link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+/*Connect to mysql database*/require_once('connect_mysql.php');
 $user_id = $_SESSION['user_id'];
 $query = "SELECT * FROM users_list WHERE user_id = '$user_id'";
 $result = mysqli_query($link, $query) or die ('Error connecting to database');

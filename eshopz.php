@@ -11,7 +11,7 @@ if (isset ($_POST['log_in'])) {
 $username = $_POST['username'];
 $password = $_POST['secret'];
 $login = false;
-$link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+/*Connect to mysql database*/require_once('connect_mysql.php');
 $query = "SELECT * FROM users_list WHERE password = sha('$password') AND username = '$username'";
 $result = mysqli_query($link, $query) or die ('Error connecting to database');
 $row = mysqli_fetch_array($result);
@@ -45,7 +45,7 @@ $user_check= false;
 $email_check= false;
 if (empty($first_name) || empty($username) || empty($password) || empty($repassword) || empty($gender) || empty($email)) { $detail= true; }
  if($password != $repassword){ $pass_check=true; }
- $link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+ /*Connect to mysql database*/require_once('connect_mysql.php');
  $query = "SELECT * FROM users_list";
  $result = mysqli_query($link, $query) or die ('Error connecting to database');
  while ( $row = mysqli_fetch_array($result)) { if ($row['username'] == $username)  { $user_check=true;} 
@@ -55,7 +55,7 @@ if (empty($first_name) || empty($username) || empty($password) || empty($repassw
  /*__________________ successful sign up _____________________*/ 
  if($detail == false && $pass_check == false && $user_check == false && $email_check == false) {
  $form = false;
- $link = mysqli_connect ('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Error connecting to mysql sever');
+ /*Connect to mysql database*/require_once('connect_mysql.php');
 $query = "INSERT INTO users_list (date_time, first_name, last_name, username, password, email, gender)" .
 "VALUES(NOW(), '$first_name', '$last_name', '$username', sha('$password'), '$email', '$gender')";
  mysqli_query ($link, $query) or die ('Error connecting database') ;
