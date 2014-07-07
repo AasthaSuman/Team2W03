@@ -1,8 +1,11 @@
-<?php require_once('log_out.php');
-require_once('session.php'); 
+<?php 
+//insert log out option
+require_once('log_out.php');
+//start session
+require_once('session.php');
+//insert header
 require_once('header.php');
 ?>
-
 <?php 
 $form = false;
 if (isset($_POST['create_shop'])) {
@@ -20,7 +23,7 @@ $link = mysqli_connect('localhost', 'root', 'eshop-aykp', 'eshopz') or die ('Err
 $query = "INSERT INTO shops_list (user_id, date_made, shop_name, address, phone_no, mobile_no, details) " .
 "VALUES ('$user_id', NOW(), '$name', '$address', '$phone', '$mobile', '$details')";
 mysqli_query($link, $query) or die ('Error connecting to database');
-$query = "UPDATE users_list SET shop= 1 WHERE user_id = '$user_id'";
+$query = "UPDATE users_list SET shop = 1 WHERE user_id = '$user_id'";
 mysqli_query($link, $query) or die ('Error connecting to database');
 msysqli_close($link);
 /*confirmation*/ ?>

@@ -1,14 +1,30 @@
 <?php 
+//insert log out option
 require_once('log_out.php');
+//start session
 require_once('session.php');
+//insert header
 require_once('header.php');
-?>
+?><br>
 <div class = "category">
-<table>
-<tr><td><a>Books</a></td></tr>
-<tr><td><a>Lab materials</a></td></tr>
-</table>
+<ul><a><b>Books</b></a>
+<li><a>Study related books</a></li>
+<li><a>Novels</a></li>
+<li><a>Magazines</a></li>
+<li><a>Others</a></li>
+</ul>
+<ul><a><b>Lab materials</b></a>
+<li><a>Mechanical lab</a></li>
+<li><a>Engineering Design</a></li>
+<li><a>Others</a></li>
+</ul>
+<ul><a><b>Electronics & Computers</b></a>
+<li><a>Camera and Accessories</a></li>
+<li><a>Laptop</a></li>
+<li><a>Laptop Accessories</a></li>
+<li><a>Videogames</a></li>
+<li><a>Other Electronics</a></li>
+</ul>
 </div>
-
 </body>
 </html>
