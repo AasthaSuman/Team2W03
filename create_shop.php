@@ -18,7 +18,7 @@ $details = $_POST['details'];
 $detail = false;
 If ((empty($name))|| (empty($address)) || (empty($mobile))) {$form = true; $detail = true;} 
 if ($form == false) { 
-/*Connect to mysql database*/require_once('connect_mysql.php');
+/*Connect to mysql database*/ include ('connect_mysql.php');
 $query = "INSERT INTO shops_list (user_id, date_made, shop_name, address, phone_no, mobile_no, details) " .
 "VALUES ('$user_id', NOW(), '$name', '$address', '$phone', '$mobile', '$details')";
 mysqli_query($link, $query) or die ('Error connecting to database');

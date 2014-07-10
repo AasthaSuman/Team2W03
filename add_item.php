@@ -3,6 +3,7 @@ $form = false;
 if (isset ($_POST['add_item'])) {
 $name = $_POST['item_name'];
 $price = $_POST['price'];
+$number = $_POST['number'];
 $discount = $_POST['discount'];
 $category = $_POST['category'];
 $details = $_POST['details'];
@@ -15,15 +16,15 @@ if (($_FILES["image"]["type"] == "image/gif") || ($_FILES["image"]["type"] == "i
 if ($_FILES['image']['error'] == 0) {
 move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $_FILES['image']['name']); $form = false;}
 else {$error = true;}} else {$form= true; $image_check = true;}}
-if ((empty($name)) || (empty($price)) || (empty($image))) {$form = true; $detail= true;}
+if ((empty($name)) || (empty($price)) || (empty($image)) || (empty($number))) {$form = true; $detail= true;}
 //item added successfully
 if ($form == false) { 
-/*Connect to mysql database*/require_once('connect_mysql.php');
+/*Connect to mysql database*/ include ('connect_mysql.php');
 $query1 = "SELECT * FROM shops_list WHERE user_id = $user_id" or die ('Error connecting to database');
 $row = mysqli_fetch_array(mysqli_query($link, $query1));
 $seller_id = $row['seller_id'];
-$query = "INSERT INTO items_list (user_id, seller_id, item_name, date_upload, category, selling_price, discount, details, image) " .
-"VALUES ('$user_id','$seller_id', '$name', NOW(), '$category', '$price', '$discount', '$details', '$image')";
+$query = "INSERT INTO items_list (user_id, seller_id, item_name, number, date_upload, category, selling_price, discount, details, image) " .
+"VALUES ('$user_id','$seller_id', '$name',$number, NOW(), '$category', '$price', '$discount', '$details', '$image')";
 mysqli_query($link, $query) or die ('Error connecting to database');
 $query = "UPDATE users_list SET sale = 1 WHERE user_id = '$user_id'";
 mysqli_query($link, $query) or die ('Error connecting to database');
@@ -43,6 +44,8 @@ if ($form==true) {
 value="<?php echo (isset($_POST['item_name']) ? $_POST['item_name'] : ''); ?>"></p></div>
 <div class="table-row"><p>Selling price (&#8377)*: </p><p><input type="text" name="price" 
 value="<?php echo (isset($_POST['price']) ? $_POST['price'] : ''); ?>"></p></div>
+<div class="table-row"><p>No. of items available*: </p><p><input type="text" name="number" 
+value="<?php echo (isset($_POST['number']) ? $_POST['number'] : ''); ?>"></p></div>
 <div class="table-row"><p>Discount(%): </p><p><input type="text" name="discount" 
 value="<?php echo (isset($_POST['discount']) ? $_POST['discount'] : '0'); ?>"></p></div>
 <div class="table-row"><p>Category*: </p><p><select name="category"><option value = "0">--</option><option value="books">Books</option>

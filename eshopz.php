@@ -11,7 +11,7 @@ if (isset ($_POST['log_in'])) {
 $username = $_POST['username'];
 $password = $_POST['secret'];
 $login = false;
-/*Connect to mysql database*/require_once('connect_mysql.php');
+/*Connect to mysql database*/include ('connect_mysql.php');
 $query = "SELECT * FROM users_list WHERE password = sha('$password') AND username = '$username'";
 $result = mysqli_query($link, $query) or die ('Error connecting to database');
 $row = mysqli_fetch_array($result);
