@@ -26,5 +26,14 @@ require_once('header.php');
 <li><a>Other Electronics</a></li>
 </ul>
 </div>
+<div class = "home">
+<?php
+include ('connect_mysql.php');
+$query = "SELECT * FROM items_list ORDER BY date_upload DESC";
+$result = mysqli_query($link, $query);
+while ($row = mysqli_fetch_array($result)) {
+echo '<div> <b>' . $row['item_name'] . '<b><br>Price: ' . $row['selling_price'] . '</div>';}
+?>
+</div>
 </body>
 </html>

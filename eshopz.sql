@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2014 at 05:46 PM
+-- Generation Time: Jul 16, 2014 at 05:17 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -23,6 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`) VALUES
+(1, 'books'),
+(2, 'lab materials'),
+(3, 'electronics & computers'),
+(4, 'others');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items_list`
 --
 
@@ -31,13 +53,14 @@ CREATE TABLE IF NOT EXISTS `items_list` (
   `seller_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `item_name` text NOT NULL,
-  `number` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL DEFAULT '0',
   `date_upload` datetime NOT NULL,
-  `category` varchar(20) DEFAULT NULL,
   `selling_price` int(11) DEFAULT NULL,
   `discount` int(11) DEFAULT '0',
   `details` text NOT NULL,
   `image` text NOT NULL,
+  `last_updated` datetime NOT NULL,
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
@@ -45,17 +68,17 @@ CREATE TABLE IF NOT EXISTS `items_list` (
 -- Dumping data for table `items_list`
 --
 
-INSERT INTO `items_list` (`item_id`, `seller_id`, `user_id`, `item_name`, `number`, `date_upload`, `category`, `selling_price`, `discount`, `details`, `image`) VALUES
-(11, 0, 8, '', 0, '2014-07-06 20:55:58', 'others', 200, 0, '', '599021_102305356598481_1189826027_n.jpg'),
-(12, 0, 20, '', 0, '2014-07-06 21:15:58', 'books', 123, 0, '', '578598_707473155961248_640943044_n.jpg'),
-(13, 0, 3, 'basket', 0, '2014-07-07 01:26:22', 'others', 150, 0, '', '1505627_713373948703550_1996202086_n.jpg'),
-(14, 0, 3, 'bucket', 0, '2014-07-07 01:28:18', 'lab', 200, 0, '', '62963_712636062110672_1896918615_n.jpg'),
-(15, 0, 3, 'bucket', 0, '2014-07-07 01:39:17', 'lab', 200, 0, '', '62963_712636062110672_1896918615_n.jpg'),
-(16, 0, 3, 'damn', 0, '2014-07-07 03:29:04', 'books', 1, 0, '', '1796601_480796458693743_500589045_n.jpg'),
-(17, 0, 3, 'Labcoat', 0, '2014-07-07 11:55:41', 'lab', 100, 0, '', '1463876_696089110432034_6561102_n.jpg'),
-(18, 0, 3, 'whydis', 0, '2014-07-07 11:57:28', 'books', 12, 0, '', '1959368_599317843488366_1249474489_n.jpg'),
-(19, 0, 3, 'door', 0, '2014-07-09 21:36:17', 'others', 234, 10, '', '1897996_508642272501335_495049611_n.jpg'),
-(20, 0, 3, 'mirror', 30, '2014-07-09 22:27:26', 'others', 50, 0, '', '10151126_508035865985336_3706455943054665146_n.jpg');
+INSERT INTO `items_list` (`item_id`, `seller_id`, `user_id`, `item_name`, `category_id`, `number`, `date_upload`, `selling_price`, `discount`, `details`, `image`, `last_updated`) VALUES
+(11, 0, 8, '', 0, 0, '2014-07-06 20:55:58', 200, 0, '', '599021_102305356598481_1189826027_n.jpg', '0000-00-00 00:00:00'),
+(12, 0, 20, '', 0, 0, '2014-07-06 21:15:58', 123, 0, '', '578598_707473155961248_640943044_n.jpg', '0000-00-00 00:00:00'),
+(13, 0, 3, 'basket', 0, 0, '2014-07-07 01:26:22', 150, 0, '', '1505627_713373948703550_1996202086_n.jpg', '0000-00-00 00:00:00'),
+(14, 0, 3, 'bucket', 0, 0, '2014-07-07 01:28:18', 200, 0, '', '62963_712636062110672_1896918615_n.jpg', '0000-00-00 00:00:00'),
+(15, 0, 3, 'bucket', 0, 0, '2014-07-07 01:39:17', 200, 0, '', '62963_712636062110672_1896918615_n.jpg', '0000-00-00 00:00:00'),
+(16, 0, 3, 'damn', 0, 0, '2014-07-07 03:29:04', 1, 0, '', '1796601_480796458693743_500589045_n.jpg', '0000-00-00 00:00:00'),
+(17, 0, 3, 'Labcoat', 0, 0, '2014-07-07 11:55:41', 100, 0, '', '1463876_696089110432034_6561102_n.jpg', '0000-00-00 00:00:00'),
+(18, 0, 3, 'whydis', 0, 0, '2014-07-07 11:57:28', 12, 0, '', '1959368_599317843488366_1249474489_n.jpg', '0000-00-00 00:00:00'),
+(19, 0, 3, 'door', 0, 0, '2014-07-09 21:36:17', 234, 10, '', '1897996_508642272501335_495049611_n.jpg', '0000-00-00 00:00:00'),
+(20, 0, 3, 'mirror', 0, 30, '2014-07-09 22:27:26', 50, 0, '', '10151126_508035865985336_3706455943054665146_n.jpg', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -74,6 +97,32 @@ CREATE TABLE IF NOT EXISTS `shops_list` (
   `details` text,
   PRIMARY KEY (`seller_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_category`
+--
+
+CREATE TABLE IF NOT EXISTS `sub_category` (
+  `sub_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sub_category_name` varchar(30) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`sub_category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `sub_category`
+--
+
+INSERT INTO `sub_category` (`sub_category_id`, `sub_category_name`, `category_id`) VALUES
+(1, 'study related books', NULL),
+(2, 'novels', NULL),
+(3, 'magazines', NULL),
+(4, 'mechanical lab', NULL),
+(5, 'engineering design', NULL),
+(6, 'camera & accessories', NULL),
+(7, 'laptop', NULL);
 
 -- --------------------------------------------------------
 

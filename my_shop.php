@@ -24,10 +24,15 @@ require_once('add_item.php');
 echo '</div> <div><h1>Items in shop </h1>';
 $query1 = "SELECT * FROM items_list WHERE user_id = '$user_id' ORDER BY date_upload DESC" or die ('Error connecting to database');
 $data = mysqli_query($link, $query1);
-if (mysqli_num_rows($data) != 0) { $count = 1; 
+if (mysqli_num_rows($data) != 0) {
+$count = 0; 
+echo '<table class = "items"> <tr><th>Se. No.</th><th>Item Name</th><th>No. of items available</th><th></th></tr>';
 while($row1 = mysqli_fetch_array($data)) {
-echo $count . ') ' . $row1['item_name'] . '<br>'; $count++;}}
-else { echo '<font color= "red" size = "6px"> <br>No items added</font>';}
+$count++; echo '<tr><td>' . $count . '</td>';
+echo '<td>' . $row1['item_name'] . '</td>';
+echo '<td>' . $row1['number'] . '</td>';
+echo '<td><a href = "change_item.php?id=' . $row1['item_id'] . '">Change</a></td></tr>';} echo '</table>';}
+else { echo '<font color= "red" size = "6px"> <br>No item added</font>';}
 echo '</div>';}
 mysqli_close($link);
 ?>

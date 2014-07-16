@@ -49,10 +49,10 @@
     margin-bottom: 0px;
     margin-top: 0px;  }
 	
-	a:link {color: white;}
-	a:visited {color: rgb(204,204,204); }
-	a:hover {font-weight: bold; font-size: 1.1em; color: white; }
-	a:active {color: white;}
+	div.option a:link {color: white;}
+	div.option a:visited {color: rgb(204,204,204); }
+	div.option a:hover {font-weight: bold; font-size: 1.1em; color: white; }
+	div.option a:active {color: white;}
 	
 	div.shop {text-align: center;}
 	a.shop {background-color: green;
@@ -70,13 +70,6 @@
 	line-height: 30px;
 	font-size: 20px}
 	
-	div.category {
-	margin-right: 80%;
-	border: solid thin;
-	border-color: grey;
-	border-radius: 12px;
-	background-color: rgb(151,203,255); 
-	}
 	div.item_form h4 {
 	margin-left: 25%; margin-right: 25%;text-align: center;
 	border-radius: 12px;
@@ -88,6 +81,25 @@
 	padding: 10px; padding-top: 0px; margin-right: 10px;
 	}
 	
+	div.category, div.home {
+	position: absolute;
+	top: 175px;
+	border: solid thin;
+	border-color: grey;
+	border-radius: 12px;
+	background-color: rgb(151,203,255); }
+	div.category {left: 10px; right: 80%;}
+	div.home {left: 22%; 	right: 10px; padding : 15px;}
+	div.home div {
+	margin: 10px;
+	padding: 10px;
+	background-color: rgb(191,223,255);
+	}
+	
+	table.items {
+	text-align: center;
+	border-spacing: 10px;
+	}
 	
 	
 	

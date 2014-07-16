@@ -20,11 +20,13 @@ if ((empty($name)) || (empty($price)) || (empty($image)) || (empty($number))) {$
 //item added successfully
 if ($form == false) { 
 /*Connect to mysql database*/ include ('connect_mysql.php');
-$query1 = "SELECT * FROM shops_list WHERE user_id = $user_id" or die ('Error connecting to database');
-$row = mysqli_fetch_array(mysqli_query($link, $query1));
+$query1 = "SELECT shops_list.seller_id, category.category_id FROM shops_list, category" .
+ "ON (shops_list.user_id = '$user_id', category.category_name = '$category')" or die ('Error connecting to database');
+ $row = mysqli_fetch_array(mysqli_query($link, $query1));
+$category_id = $row['category_id'];
 $seller_id = $row['seller_id'];
-$query = "INSERT INTO items_list (user_id, seller_id, item_name, number, date_upload, category, selling_price, discount, details, image) " .
-"VALUES ('$user_id','$seller_id', '$name',$number, NOW(), '$category', '$price', '$discount', '$details', '$image')";
+$query = "INSERT INTO items_list (user_id, seller_id, item_name, number, date_upload, category_id, selling_price, discount, details, image) " .
+"VALUES ('$user_id','$seller_id', '$name',$number, NOW(), '$category_id', '$price', '$discount', '$details', '$image')";
 mysqli_query($link, $query) or die ('Error connecting to database');
 $query = "UPDATE users_list SET sale = 1 WHERE user_id = '$user_id'";
 mysqli_query($link, $query) or die ('Error connecting to database');
